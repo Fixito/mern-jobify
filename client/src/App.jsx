@@ -35,13 +35,13 @@ import { loader as editJobLoader } from './pages/EditJob.jsx';
 import { loader as adminLoader } from './pages/Admin.jsx';
 import { loader as statsLoader } from './pages/Stats.jsx';
 
-const checkDefaultTheme = () => {
+export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
   document.body.classList.toggle('dark-theme', isDarkTheme);
   return isDarkTheme;
 };
 
-const isDarkThemeEnabled = checkDefaultTheme();
+checkDefaultTheme();
 
 const queryClient = new QueryClient({
   defaultOptions: {

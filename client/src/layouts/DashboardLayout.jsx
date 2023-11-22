@@ -11,6 +11,7 @@ import { BigSidebar, SmallSidebar, Navbar, Loading } from '../components';
 import Wrapper from '../assets/wrappers/Dashboard.js';
 import customFetch from '../utils/customFetch.js';
 import { useQuery } from '@tanstack/react-query';
+import { checkDefaultTheme } from '../App.jsx';
 
 const userQuery = {
   queryKey: ['user'],
@@ -31,13 +32,13 @@ export const loader = (queryClient) => async () => {
 
 const DashboardContext = createContext();
 
-const DashboardLayout = ({ isDarkThemeEnabled, queryClient }) => {
+const DashboardLayout = ({ queryClient }) => {
   const { user } = useQuery(userQuery).data;
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === 'loading';
   const [showSidebar, setShowSidebar] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
+  const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
   const [isAuthError, setIsAuthError] = useState(false);
 
   const toggleDarkTheme = () => {
